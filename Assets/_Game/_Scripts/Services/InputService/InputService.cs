@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class InputService
@@ -15,4 +16,5 @@ public class InputService
     public Vector2 Look => _input.Player.Look.ReadValue<Vector2>();
 
     public bool Jump => _input.Player.Jump.WasPressedThisFrame();
+    public bool Interact => _input.Player.Interact.WasPressedThisFrame();
 }
