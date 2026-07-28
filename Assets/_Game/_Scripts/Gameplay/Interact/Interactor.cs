@@ -5,6 +5,7 @@ public class Interactor : MonoBehaviour
     [SerializeField] private Transform _interactorSource;
     [SerializeField] private LayerMask _interactableLayer;
     [SerializeField] private float _interactRange = 3f;
+    [SerializeField] private Transform _equipItem;
 
     private InputService _inputService;
 
@@ -29,6 +30,14 @@ public class Interactor : MonoBehaviour
             {
                 {
                     interactable.Interact();
+                }
+                return;
+            }
+            if (hit.collider.TryGetComponent(out IPickupable pickupable))
+            {
+                {
+                    Debug.Log("Pick up");
+                    pickupable.PickUp(_equipItem);
                 }
                 return;
             }
