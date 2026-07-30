@@ -161,8 +161,8 @@ GameObject:
   - component: {fileID: 8119298397122603903}
   - component: {fileID: 2358297517080138923}
   m_Layer: 6
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Package
+  m_TagString: Package
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -272,8 +272,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 925266c99778613418d280a682173cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Box
-  rb: {fileID: 2358297517080138923}
-  col: {fileID: 5514575410939271758}
+  _rb: {fileID: 2358297517080138923}
+  _col: {fileID: 5514575410939271758}
+  _packageConfig: {fileID: 11400000, guid: e9e77cc2f02f499418c15f78a1a2f510, type: 2}
 --- !u!54 &2358297517080138923
 Rigidbody:
   m_ObjectHideFlags: 0
