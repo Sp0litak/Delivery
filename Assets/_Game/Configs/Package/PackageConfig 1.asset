@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10159e73f2692f54d829af8cdd640949, type: 3}
-  m_Name: PackageConfig
+  m_Name: PackageConfig 1
   m_EditorClassIdentifier: Assembly-CSharp::PackageConfig
   address: A
   reward: 100

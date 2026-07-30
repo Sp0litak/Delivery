@@ -12,7 +12,7 @@ public class Package : MonoBehaviour, IPickupable
 
     private void Start()
     {
-        _order = new Order(_packageConfig.adress);
+        _order = new Order(_packageConfig.address);
         _orderService = ServiceLocator.Get<OrderService>();
         _orderService.AddOrder(_order.Id);
     }
