@@ -592,7 +592,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -522.0178, y: -218.55}
+  m_AnchoredPosition: {x: -522.0178, y: -218.15}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &872911613
@@ -986,8 +986,8 @@ GameObject:
   - component: {fileID: 2042084843}
   - component: {fileID: 2042084842}
   - component: {fileID: 2042084841}
-  - component: {fileID: 2042084845}
   - component: {fileID: 2042084840}
+  - component: {fileID: 2042084845}
   m_Layer: 6
   m_Name: OrderScreen
   m_TagString: Untagged
@@ -1103,8 +1103,8 @@ Transform:
   - {fileID: 1523114648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &2042084845
-SphereCollider:
+--- !u!65 &2042084845
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1122,8 +1122,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.73, y: 2.12, z: 3.59}
+  m_Center: {x: 0, y: 0.71, z: 1.3}
 --- !u!1 &4637219084532781045 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9168859236765366932, guid: 2f0c472cc8cde5e409d145ab7d16633c, type: 3}
