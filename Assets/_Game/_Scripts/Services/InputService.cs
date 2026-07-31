@@ -24,14 +24,22 @@ public class InputService
     public void EnableGameplay()
     {
         _isUI = false;
+
         _input.UI.Disable();
         _input.Player.Enable();
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void EnableUI()
     {
         _isUI = true;
+
         _input.Player.Disable();
         _input.UI.Enable();
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }
