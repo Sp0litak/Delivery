@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OrderView
   _addressText: {fileID: 3775654626779022409}
   _rewardText: {fileID: 4719308453286797709}
-  _button: {fileID: 8146414133829540149}
+  _pickOrderButton: {fileID: 8146414133829540149}
 --- !u!114 &8146414133829540149
 MonoBehaviour:
   m_ObjectHideFlags: 0
