@@ -4,17 +4,16 @@ public class Package : MonoBehaviour, IPickupable
 {
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Collider _col;
-    [SerializeField] private PackageConfig _packageConfig;
-    private bool _isPickedUp = false;
-    private Order _order;
-    private OrderService _orderService;
-    public Order Order => _order;
 
-    private void Start()
+    private PackageConfig _packageConfig;
+    private bool _isPickedUp;
+
+    public Order Order { get; private set; }
+
+    public void Initialize(PackageConfig packageConfig)
     {
-        _order = new Order(_packageConfig.address);
-        _orderService = ServiceLocator.Get<OrderService>();
-        _orderService.AddOrder(_order.Id);
+        _packageConfig = packageConfig;
+        Order = new Order(_packageConfig.address);
     }
 
     public void PickUp(Transform parent)
@@ -22,7 +21,6 @@ public class Package : MonoBehaviour, IPickupable
         if (!_isPickedUp)
         {
             transform.SetParent(parent, false);
-
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
 
@@ -32,6 +30,7 @@ public class Package : MonoBehaviour, IPickupable
                 _rb.angularVelocity = Vector3.zero;
                 _rb.isKinematic = true;
             }
+
             _isPickedUp = true;
         }
         else
@@ -45,9 +44,8 @@ public class Package : MonoBehaviour, IPickupable
         transform.SetParent(null);
 
         if (_rb != null)
-        {
             _rb.isKinematic = false;
-        }
+
         _isPickedUp = false;
     }
 }

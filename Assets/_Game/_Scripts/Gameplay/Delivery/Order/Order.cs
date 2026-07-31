@@ -2,15 +2,21 @@ using System;
 
 public class Order
 {
-    private readonly string _id;
-    private readonly string _address;
+    public string Id { get; }
+    public string Address { get; }
+    public bool IsDelivered { get; private set; }
 
-    public string Id => _id;
-    public string Address => _address;
+    public event Action Delivered;
 
     public Order(string address)
     {
-        _id = Guid.NewGuid().ToString();
-        _address = address;
+        Id = Guid.NewGuid().ToString();
+        Address = address;
+    }
+
+    public void Deliver()
+    {
+        IsDelivered = true;
+        Delivered.Invoke();
     }
 }

@@ -3,25 +3,24 @@ using UnityEngine;
 public class DeliveryPoint : MonoBehaviour
 {
     [SerializeField] private string _address;
-    private OrderService _orderService;
-    private Package _package;
-
-    private void Start()
-    {
-        _orderService = ServiceLocator.Get<OrderService>();
-    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Package"))
-        {
-            _package = other.GetComponent<Package>();
-            Order order = _package.Order;
+        if (!other.CompareTag("Package"))
+            return;
 
-            if (_address == order.Address && !_orderService.IsDelivered(order.Id))
-            {
-                _orderService.Delivered(order.Id);
-            }
+        Package package = other.GetComponent<Package>();
+        Order order = package.Order;
+
+        if (order.Address == _address && !order.IsDelivered)
+        {
+            order.Deliver();
+
+            Debug.Log($"Order {order.Id} delivered!");
+        }
+        else
+        {
+            Debug.Log("idi nah");
         }
     }
 }

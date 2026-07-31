@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class OrderView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _rewardText;
     [SerializeField] private Button _pickOrderButton;
 
+    public event Action<PackageConfig> OrderSelected;
     private PackageConfig _packageConfig;
 
     public void Initialize(PackageConfig packageConfig)
@@ -23,6 +25,6 @@ public class OrderView : MonoBehaviour
 
     private void OnClick()
     {
-        Debug.Log($"Picked order: {_packageConfig.address}");
+        OrderSelected.Invoke(_packageConfig);
     }
 }

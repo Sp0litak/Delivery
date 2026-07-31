@@ -7,7 +7,6 @@ public class GameBootstrap : MonoBehaviour
     {
         //Init
         ServiceLocator.Register(new InputService(new PlayerInputSystem()));
-        ServiceLocator.Register(new OrderService());
         _player.Initialize();
     }
 }
