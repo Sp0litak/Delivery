@@ -60,6 +60,7 @@ public class OrderController : MonoBehaviour
         _currentOrder.Delivered -= OnDelivered;
 
         _currentOrderView?.SetSelected(false);
+        _currentOrderView.gameObject.SetActive(false);
 
         _currentPackage = null;
         _currentOrder = null;
