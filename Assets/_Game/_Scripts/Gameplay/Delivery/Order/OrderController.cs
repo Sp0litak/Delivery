@@ -12,10 +12,12 @@ public class OrderController : MonoBehaviour
     private Order _currentOrder;
     private OrderView _currentOrderView;
     private Timer _timer;
+    private Money _money;
 
     private void Start()
     {
         CreateOrders();
+        _money = ServiceLocator.Get<Money>();
     }
     private void Update()
     {
@@ -68,6 +70,7 @@ public class OrderController : MonoBehaviour
     private void OnDelivered()
     {
         _currentOrder.Delivered -= OnDelivered;
+        _money.Add(_currentPackage.Money);
 
         if (_timer != null)
         {

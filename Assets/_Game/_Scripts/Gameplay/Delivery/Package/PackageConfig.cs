@@ -4,7 +4,7 @@ using UnityEngine;
 public class PackageConfig : ScriptableObject
 {
     public string address;
-    public string reward;
+    public int reward;
     public PackageType type;
     public int timer;
 }

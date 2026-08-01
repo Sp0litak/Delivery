@@ -8,6 +8,7 @@ public class Package : MonoBehaviour, IPickupable
 
     private PackageConfig _packageConfig;
     private bool _isPickedUp;
+    public int Money => _packageConfig.reward;
     public Order Order { get; private set; }
 
     public void Initialize(PackageConfig packageConfig)
