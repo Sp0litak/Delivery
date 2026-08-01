@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PackageConfig
   address: A
   reward: 100
+  type: 0
+  timer: 15

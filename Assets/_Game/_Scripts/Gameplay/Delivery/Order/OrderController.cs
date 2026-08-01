@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class OrderController : MonoBehaviour
@@ -7,14 +6,23 @@ public class OrderController : MonoBehaviour
     [SerializeField] private OrderView _orderViewPrefab;
     [SerializeField] private Transform _content;
     [SerializeField] private Transform _packageSpawnPoint;
+    [SerializeField] private TimerView _timerView;
 
-    private Package _currentPackage = null;
-    private Order _currentOrder = null;
-    private OrderView _currentOrderView = null;
+    private Package _currentPackage;
+    private Order _currentOrder;
+    private OrderView _currentOrderView;
+    private Timer _timer;
 
     private void Start()
     {
         CreateOrders();
+    }
+    private void Update()
+    {
+        _timer?.Tick(Time.deltaTime);
+
+        if (_timer != null)
+            _timerView.SetTime(_timer.RemainingTime);
     }
 
     private void CreateOrders()
@@ -27,43 +35,90 @@ public class OrderController : MonoBehaviour
             view.OrderCanceled += CancelOrder;
         }
     }
+
     private void SpawnOrder(OrderView view, PackageConfig config)
     {
         if (_currentPackage != null)
             return;
 
         _currentOrderView = view;
-
         _currentOrderView.SetSelected(true);
 
         _currentPackage = PackageFactory.Create(_packageSpawnPoint.position, config);
         _currentOrder = _currentPackage.Order;
         _currentOrder.Delivered += OnDelivered;
+
+        _timer = new Timer(config.timer);
+        _timer.Completed += OnTimerCompleted;
+        _timer.Start();
+
+        _timerView.SetTime(_timer.RemainingTime);
     }
 
     private void CancelOrder()
     {
-        if (_currentOrder != null)
-            _currentOrder.Delivered -= OnDelivered;
-
         if (_currentPackage != null)
             Destroy(_currentPackage.gameObject);
 
         _currentOrderView?.SetSelected(false);
 
-        _currentOrder = null;
-        _currentPackage = null;
-        _currentOrderView = null;
+        ClearCurrentOrder();
     }
+
     private void OnDelivered()
     {
         _currentOrder.Delivered -= OnDelivered;
 
+        if (_timer != null)
+        {
+            _timer.Completed -= OnTimerCompleted;
+            _timer.Stop();
+            _timer = null;
+        }
+
+        _timerView.Clear();
+
         _currentOrderView?.SetSelected(false);
         _currentOrderView.gameObject.SetActive(false);
 
-        _currentPackage = null;
         _currentOrder = null;
+        _currentPackage = null;
+        _currentOrderView = null;
+    }
+
+    private void OnTimerCompleted()
+    {
+        Debug.Log("Delivery time has expired");
+
+        FailOrder();
+    }
+
+    private void FailOrder()
+    {
+        if (_currentPackage != null)
+            Destroy(_currentPackage.gameObject);
+
+        _currentOrderView?.SetSelected(false);
+
+        ClearCurrentOrder();
+    }
+
+    private void ClearCurrentOrder()
+    {
+        if (_currentOrder != null)
+            _currentOrder.Delivered -= OnDelivered;
+
+        if (_timer != null)
+        {
+            _timer.Completed -= OnTimerCompleted;
+            _timer.Stop();
+            _timer = null;
+        }
+
+        _timerView.Clear();
+
+        _currentOrder = null;
+        _currentPackage = null;
         _currentOrderView = null;
     }
 }

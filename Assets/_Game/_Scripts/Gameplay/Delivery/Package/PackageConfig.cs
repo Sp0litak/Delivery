@@ -5,4 +5,6 @@ public class PackageConfig : ScriptableObject
 {
     public string address;
     public string reward;
+    public PackageType type;
+    public int timer;
 }

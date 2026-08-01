@@ -8,13 +8,25 @@ public class Package : MonoBehaviour, IPickupable
 
     private PackageConfig _packageConfig;
     private bool _isPickedUp;
-    private string Id => Order.Id;
     public Order Order { get; private set; }
 
     public void Initialize(PackageConfig packageConfig)
     {
         _packageConfig = packageConfig;
         Order = new Order(_packageConfig.address);
+        Order.Delivered += OnOrderDelivered;
+    }
+
+    private void OnOrderDelivered()
+    {
+        Order.Delivered -= OnOrderDelivered;
+
+        DestroyPackage(5f);
+    }
+
+    private void DestroyPackage(float delay)
+    {
+        Destroy(gameObject, delay);
     }
 
     public void PickUp(Transform parent)
