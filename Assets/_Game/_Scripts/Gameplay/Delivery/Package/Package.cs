@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Package : MonoBehaviour, IPickupable
@@ -7,7 +8,7 @@ public class Package : MonoBehaviour, IPickupable
 
     private PackageConfig _packageConfig;
     private bool _isPickedUp;
-
+    private string Id => Order.Id;
     public Order Order { get; private set; }
 
     public void Initialize(PackageConfig packageConfig)
