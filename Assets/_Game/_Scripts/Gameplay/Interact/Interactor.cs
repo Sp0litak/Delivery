@@ -28,17 +28,12 @@ public class Interactor : MonoBehaviour
         {
             if (hit.collider.TryGetComponent(out IInteractable interactable))
             {
-                {
-                    interactable.Interact();
-                }
+                interactable.Interact();
                 return;
             }
             if (hit.collider.TryGetComponent(out IPickupable pickupable))
             {
-                {
-                    Debug.Log("Pick up");
-                    pickupable.PickUp(_equipItem);
-                }
+                pickupable.PickUp(_equipItem);
                 return;
             }
         }

@@ -6,14 +6,17 @@ public class TimerView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _timerText;
 
+    private const string TimeFormat = "{0:00}:{1:00}";
+
     public void SetTime(float time)
     {
         TimeSpan t = TimeSpan.FromSeconds(time);
-        _timerText.text = $"{t.Minutes:00}:{t.Seconds:00}";
+
+        _timerText.SetText(TimeFormat, t.Minutes, t.Seconds);
     }
 
     public void Clear()
     {
-        _timerText.text = "00:00";
+        _timerText.text = "00:00"; 
     }
 }

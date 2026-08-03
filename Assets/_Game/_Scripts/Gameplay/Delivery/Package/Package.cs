@@ -27,7 +27,7 @@ public class Package : MonoBehaviour, IPickupable
 
     private void DestroyPackage(float delay)
     {
-        Destroy(gameObject, delay);
+        Destroy(gameObject);
     }
 
     public void PickUp(Transform parent)
