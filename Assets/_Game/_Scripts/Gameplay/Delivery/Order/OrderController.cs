@@ -60,7 +60,7 @@ public class OrderController : MonoBehaviour
     private void CancelOrder()
     {
         if (_currentPackage != null)
-            Destroy(_currentPackage.gameObject);
+            _currentPackage.DestroyPackage();
 
         _currentOrderView?.SetSelected(false);
 
@@ -70,7 +70,10 @@ public class OrderController : MonoBehaviour
     private void OnDelivered()
     {
         _currentOrder.Delivered -= OnDelivered;
+
         _money.Add(_currentPackage.Money);
+
+        _currentPackage.DestroyPackage();
 
         if (_timer != null)
         {
@@ -98,8 +101,9 @@ public class OrderController : MonoBehaviour
 
     private void FailOrder()
     {
+        _money.ApplyPenalty(_currentPackage.Money);
         if (_currentPackage != null)
-            Destroy(_currentPackage.gameObject);
+            _currentPackage.DestroyPackage();
 
         _currentOrderView?.SetSelected(false);
 

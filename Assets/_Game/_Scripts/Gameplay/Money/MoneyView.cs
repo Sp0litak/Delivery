@@ -9,9 +9,9 @@ public class MoneyView : MonoBehaviour
     private Money _money;
     private Tween _tween;
 
-    public void Initialize(Money money)
+    public void Initialize()
     {
-        _money = money;
+        _money = ServiceLocator.Get<Money>();
 
         _money.MoneyChanged += OnMoneyChanged;
         OnMoneyChanged(_money.Amount);

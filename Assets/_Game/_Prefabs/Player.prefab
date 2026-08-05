@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 7424500967232378821}
   - component: {fileID: 7502343825797640176}
   - component: {fileID: 8153212091084629741}
+  - component: {fileID: 7631904956648702322}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -261,6 +262,22 @@ MonoBehaviour:
     m_Bits: 64
   _interactRange: 6
   _equipItem: {fileID: 4341067583204668266}
+--- !u!114 &7631904956648702322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757510953383795142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae875df69e54f54c83d75a091ffac8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraLook
+  _player: {fileID: 3688537891250938820}
+  _sensitivity: 7
+  _minPitch: -80
+  _maxPitch: 80
 --- !u!1 &3802818916582469766
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +287,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1083540205960540910}
-  - component: {fileID: 1332195577827030680}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -294,22 +310,6 @@ Transform:
   - {fileID: 8359757737770022512}
   m_Father: {fileID: 3688537891250938820}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1332195577827030680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3802818916582469766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae875df69e54f54c83d75a091ffac8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraLook
-  _player: {fileID: 3688537891250938820}
-  _sensitivity: 150
-  _minPitch: -60
-  _maxPitch: 80
 --- !u!1 &5271319114709596547
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,9 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cb05436c2ddd74892c0210e5b65304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThirdPersonMovement
-  _cameraTransform: {fileID: 1083540205960540910}
   _moveSpeed: 5
-  _rotationSpeed: 10
   _gravity: -9.81
   _jumpHeight: 2
 --- !u!114 &9173719899927962126
@@ -455,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5001da33fa69d634bb57c2b4f5869f63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  _cameraLook: {fileID: 1332195577827030680}
+  _cameraLook: {fileID: 7631904956648702322}
   _movement: {fileID: 3122103134586616741}
   _interactor: {fileID: 8153212091084629741}
   _moneyView: {fileID: 0}

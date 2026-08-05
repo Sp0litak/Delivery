@@ -3,13 +3,13 @@ using UnityEngine;
 public class CameraLook : MonoBehaviour
 {
     [SerializeField] private Transform _player;
-    [SerializeField] private float _sensitivity = 150f;
-    [SerializeField] private float _minPitch = -60f;
+    [SerializeField] private float _sensitivity = 6f;
+    [SerializeField] private float _minPitch = -80f;
     [SerializeField] private float _maxPitch = 80f;
 
     private InputService _input;
 
-    private float pitch;
+    private float _pitch;
 
     public void Initialize()
     {
@@ -21,13 +21,13 @@ public class CameraLook : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector2 look = _input.Look * Time.deltaTime * _sensitivity;
+        Vector2 look = _input.Look * _sensitivity * Time.deltaTime;
+
+        _pitch -= look.y;
+        _pitch = Mathf.Clamp(_pitch, _minPitch, _maxPitch);
+
+        transform.localRotation = Quaternion.Euler(_pitch, 0f, 0f);
 
         _player.Rotate(Vector3.up * look.x);
-
-        pitch -= look.y;
-        pitch = Mathf.Clamp(pitch, _minPitch, _maxPitch);
-
-        transform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     }
 }

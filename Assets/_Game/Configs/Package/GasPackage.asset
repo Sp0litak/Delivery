@@ -15,4 +15,4 @@ MonoBehaviour:
   address: GAS
   reward: 300
   type: 0
-  timer: 90
+  timer: 10

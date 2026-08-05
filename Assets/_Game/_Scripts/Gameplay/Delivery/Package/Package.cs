@@ -16,7 +16,6 @@ public class Package : MonoBehaviour, IPickupable
     {
         _packageConfig = packageConfig;
         Order = new Order(_packageConfig.address);
-        Order.Delivered += OnOrderDelivered;
 
         PlaySpawnAnimation();
     }
@@ -41,14 +40,7 @@ public class Package : MonoBehaviour, IPickupable
         );
     }
 
-    private void OnOrderDelivered()
-    {
-        Order.Delivered -= OnOrderDelivered;
-
-        DestroyPackage();
-    }
-
-    private void DestroyPackage()
+    public void DestroyPackage()
     {
         Sequence sequence = DOTween.Sequence();
 
