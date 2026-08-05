@@ -19,6 +19,7 @@ public class OrderController : MonoBehaviour
         CreateOrders();
         _money = ServiceLocator.Get<Money>();
     }
+
     private void Update()
     {
         _timer?.Tick(Time.deltaTime);
