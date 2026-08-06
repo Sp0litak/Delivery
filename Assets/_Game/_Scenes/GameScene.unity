@@ -2455,53 +2455,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &330755062
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 330755064}
-  - component: {fileID: 330755063}
-  m_Layer: 0
-  m_Name: PackageDatabase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &330755063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330755062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c820dd7ebd2400d4ebef26bb84ef6b81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PackageDatabase
-  _packageConfigs:
-  - {fileID: 11400000, guid: e9e77cc2f02f499418c15f78a1a2f510, type: 2}
-  - {fileID: 11400000, guid: 9aa0728a4e34caf4ca4da5c359e1be3a, type: 2}
---- !u!4 &330755064
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330755062}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 496.12482, y: 228.94518, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &334070745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18383,7 +18336,7 @@ PrefabInstance:
     - target: {fileID: 1407167385070338397, guid: 2f0c472cc8cde5e409d145ab7d16633c, type: 3}
       propertyPath: _packageDatabase
       value: 
-      objectReference: {fileID: 330755063}
+      objectReference: {fileID: 0}
     - target: {fileID: 1407167385070338397, guid: 2f0c472cc8cde5e409d145ab7d16633c, type: 3}
       propertyPath: _packageSpawnPoint
       value: 
@@ -18661,7 +18614,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 953456465}
-  - {fileID: 330755064}
   - {fileID: 1271179201}
   - {fileID: 6102490540164947878}
   - {fileID: 5495952847729973842}

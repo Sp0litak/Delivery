@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class OrderController : MonoBehaviour
 {
-    [SerializeField] private PackageDatabase _packageDatabase;
     [SerializeField] private OrderView _orderViewPrefab;
     [SerializeField] private Transform _content;
     [SerializeField] private Transform _packageSpawnPoint;
@@ -37,17 +36,19 @@ public class OrderController : MonoBehaviour
 
     private void CreateOrders()
     {
-        foreach (PackageConfig config in _packageDatabase.PackageConfigs)
+        foreach (Order order in _orderService.GetOrders())
         {
+            if(order.IsDelivered)
+                continue;
             OrderView view = Instantiate(_orderViewPrefab, _content);
-            view.Initialize(config);
+            view.Initialize(order);
 
             view.OrderSelected += SpawnOrder;
             view.OrderCanceled += CancelOrder;
         }
     }
 
-    private void SpawnOrder(OrderView view, PackageConfig config)
+    private void SpawnOrder(OrderView view, Order order)
     {
         if (_currentPackage != null)
             return;
@@ -55,12 +56,12 @@ public class OrderController : MonoBehaviour
         _currentOrderView = view;
         _currentOrderView.SetSelected(true);
 
-        _currentPackage = PackageFactory.Create(_packageSpawnPoint.position, config);
+        _currentPackage = PackageFactory.Create(_packageSpawnPoint.position, order);
         _currentOrder = _currentPackage.Order;
 
         _currentOrder.Delivered += OnDelivered;
 
-        _timer = new Timer(config.timer);
+        _timer = new Timer(order.Timer);
         _timer.Completed += OnTimerCompleted;
         _timer.Start();
 
@@ -90,6 +91,7 @@ public class OrderController : MonoBehaviour
 
     private void RemoveCurrentOrder()
     {
+        _orderService.GetOrders();
         if (_currentOrder != null)
             _currentOrder.Delivered -= OnDelivered;
 

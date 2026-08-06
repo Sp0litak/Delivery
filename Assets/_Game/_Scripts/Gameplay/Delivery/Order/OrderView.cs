@@ -10,17 +10,17 @@ public class OrderView : MonoBehaviour
     [SerializeField] private Button _pickOrderButton;
     [SerializeField] private Button _cancelOrderButton;
 
-    public event Action<OrderView, PackageConfig> OrderSelected;
+    public event Action<OrderView, Order> OrderSelected;
     public event Action OrderCanceled;
 
-    private PackageConfig _packageConfig;
+    private Order _order;
 
-    public void Initialize(PackageConfig packageConfig)
+    public void Initialize(Order order)
     {
-        _packageConfig = packageConfig;
+        _order = order;
 
-        _addressText.text = packageConfig.address;
-        _rewardText.text = packageConfig.reward.ToString();
+        _addressText.text = _order.Address;
+        _rewardText.text = _order.Reward.ToString();
 
         _pickOrderButton.onClick.RemoveAllListeners();
         _pickOrderButton.onClick.AddListener(OnClick);
@@ -34,7 +34,7 @@ public class OrderView : MonoBehaviour
 
     private void OnClick()
     {
-        OrderSelected?.Invoke(this, _packageConfig);
+        OrderSelected?.Invoke(this, _order);
     }
 
     private void OnCancelClick()

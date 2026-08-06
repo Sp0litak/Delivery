@@ -7,16 +7,14 @@ public class Package : MonoBehaviour, IPickupable
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private Collider _col;
 
-    private PackageConfig _packageConfig;
     private bool _isPickedUp;
-    public int Money => _packageConfig.reward;
+    public int Money => Order.Reward;
     public Order Order { get; private set; }
 
-    public void Initialize(PackageConfig packageConfig)
+    public void Initialize(Order order)
     {
-        _packageConfig = packageConfig;
-        Order = new Order(_packageConfig.address, _packageConfig.reward);
-
+        Order = order;
+       
         PlaySpawnAnimation();
     }
 

@@ -52,4 +52,10 @@ public class Money
         _amount = Math.Max(0, _amount - amount);
         MoneyChanged?.Invoke(_amount);
     }
+
+    public void SetAmount(int amount)
+    {
+        _amount = Math.Max(0, amount);
+        MoneyChanged?.Invoke(_amount);
+    }
 }
