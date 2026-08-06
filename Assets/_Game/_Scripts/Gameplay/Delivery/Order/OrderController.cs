@@ -12,20 +12,27 @@ public class OrderController : MonoBehaviour
     private Order _currentOrder;
     private OrderView _currentOrderView;
     private Timer _timer;
-    private Money _money;
+
+    private OrderService _orderService;
 
     private void Start()
     {
+        _orderService = ServiceLocator.Get<OrderService>();
+
         CreateOrders();
-        _money = ServiceLocator.Get<Money>();
     }
 
     private void Update()
     {
-        _timer?.Tick(Time.deltaTime);
+        if (_timer == null)
+            return;
 
-        if (_timer != null)
-            _timerView.SetTime(_timer.RemainingTime);
+        _timer.Tick(Time.deltaTime);
+
+        if (_timer == null)
+            return;
+
+        _timerView.SetTime(_timer.RemainingTime);
     }
 
     private void CreateOrders()
@@ -34,6 +41,7 @@ public class OrderController : MonoBehaviour
         {
             OrderView view = Instantiate(_orderViewPrefab, _content);
             view.Initialize(config);
+
             view.OrderSelected += SpawnOrder;
             view.OrderCanceled += CancelOrder;
         }
@@ -49,6 +57,7 @@ public class OrderController : MonoBehaviour
 
         _currentPackage = PackageFactory.Create(_packageSpawnPoint.position, config);
         _currentOrder = _currentPackage.Order;
+
         _currentOrder.Delivered += OnDelivered;
 
         _timer = new Timer(config.timer);
@@ -58,60 +67,28 @@ public class OrderController : MonoBehaviour
         _timerView.SetTime(_timer.RemainingTime);
     }
 
-    private void CancelOrder()
-    {
-        if (_currentPackage != null)
-            _currentPackage.DestroyPackage();
-
-        _currentOrderView?.SetSelected(false);
-
-        ClearCurrentOrder();
-    }
-
     private void OnDelivered()
     {
-        _currentOrder.Delivered -= OnDelivered;
+        _orderService.Deliver(_currentOrder);
 
-        _money.Add(_currentPackage.Money);
-
-        _currentPackage.DestroyPackage();
-
-        if (_timer != null)
-        {
-            _timer.Completed -= OnTimerCompleted;
-            _timer.Stop();
-            _timer = null;
-        }
-
-        _timerView.Clear();
-
-        _currentOrderView?.SetSelected(false);
         _currentOrderView.gameObject.SetActive(false);
 
-        _currentOrder = null;
-        _currentPackage = null;
-        _currentOrderView = null;
+        RemoveCurrentOrder();
+    }
+
+    private void CancelOrder()
+    {
+        RemoveCurrentOrder();
     }
 
     private void OnTimerCompleted()
     {
-        Debug.Log("Delivery time has expired");
+        _orderService.Fail(_currentOrder);
 
-        FailOrder();
+        RemoveCurrentOrder();
     }
 
-    private void FailOrder()
-    {
-        _money.ApplyPenalty(_currentPackage.Money);
-        if (_currentPackage != null)
-            _currentPackage.DestroyPackage();
-
-        _currentOrderView?.SetSelected(false);
-
-        ClearCurrentOrder();
-    }
-
-    private void ClearCurrentOrder()
+    private void RemoveCurrentOrder()
     {
         if (_currentOrder != null)
             _currentOrder.Delivered -= OnDelivered;
@@ -123,10 +100,14 @@ public class OrderController : MonoBehaviour
             _timer = null;
         }
 
+        _currentPackage?.DestroyPackage();
+
+        _currentOrderView?.SetSelected(false);
+
         _timerView.Clear();
 
-        _currentOrder = null;
         _currentPackage = null;
+        _currentOrder = null;
         _currentOrderView = null;
     }
 }

@@ -15,7 +15,7 @@ public class Package : MonoBehaviour, IPickupable
     public void Initialize(PackageConfig packageConfig)
     {
         _packageConfig = packageConfig;
-        Order = new Order(_packageConfig.address);
+        Order = new Order(_packageConfig.address, _packageConfig.reward);
 
         PlaySpawnAnimation();
     }

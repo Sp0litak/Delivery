@@ -17,7 +17,6 @@ public class DeliveryPoint : MonoBehaviour
             order.Deliver();
 
             Debug.Log($"Order delivered to {_address}!");
-            Debug.Log($"Order ID: {order.Id}");
         }
     }
 }
