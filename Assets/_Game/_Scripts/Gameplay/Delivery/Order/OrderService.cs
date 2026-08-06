@@ -20,7 +20,6 @@ public class OrderService
 
     public void Deliver(Order order)
     {
-        order.Deliver();
         _money.Add(order.Reward);
         _saveService.Save(_money, this);
     }

@@ -27,9 +27,6 @@ public class Order
 
     public void Deliver()
     {
-        if (IsDelivered)
-            return;
-
         IsDelivered = true;
         Delivered?.Invoke();
     }

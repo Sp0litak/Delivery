@@ -38,8 +38,8 @@ public class OrderController : MonoBehaviour
     {
         foreach (Order order in _orderService.GetOrders())
         {
-            if(order.IsDelivered)
-                continue;
+            //if(order.IsDelivered)
+            //    continue;
             OrderView view = Instantiate(_orderViewPrefab, _content);
             view.Initialize(order);
 

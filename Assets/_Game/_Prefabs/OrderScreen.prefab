@@ -123,16 +123,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6390963104509268568}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: -4.739}
+  m_LocalRotation: {x: 0, y: -0.99691737, z: 0.078459114, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.872}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5295791190061974330}
-  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
+  m_LocalEulerAnglesHint: {x: 9, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -522.7228, y: -215.371}
+  m_AnchoredPosition: {x: -522.7228, y: -215.436}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &360059044347676894
@@ -391,6 +391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terminal_111
       objectReference: {fileID: 0}
+    - target: {fileID: 4947731221134611290, guid: 496cccd7f11340141939bf347bdc58ec, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 269afa14665a14241807ec62330d3e2a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

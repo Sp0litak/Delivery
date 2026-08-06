@@ -12,7 +12,7 @@ public class DeliveryPoint : MonoBehaviour
         Package package = other.GetComponent<Package>();
         Order order = package.Order;
 
-        if (order.Address == _address && !order.IsDelivered)
+        if (order.Address == _address)
         {
             order.Deliver();
 

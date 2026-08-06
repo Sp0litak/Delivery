@@ -20,12 +20,13 @@ public class Package : MonoBehaviour, IPickupable
 
     private void PlaySpawnAnimation()
     {
+        Vector3 localScale = transform.localScale;
         transform.localScale = Vector3.zero;
 
         Sequence sequence = DOTween.Sequence();
 
         sequence.Append(
-            transform.DOScale(0.4f, 0.35f)
+            transform.DOScale(localScale, 0.35f)
                 .SetEase(Ease.OutBack)
         );
 
@@ -41,7 +42,6 @@ public class Package : MonoBehaviour, IPickupable
     public void DestroyPackage()
     {
         Sequence sequence = DOTween.Sequence();
-
 
         sequence.Append(
             transform.DOJump(
