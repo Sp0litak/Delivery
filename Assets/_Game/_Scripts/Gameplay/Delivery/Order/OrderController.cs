@@ -13,10 +13,12 @@ public class OrderController : MonoBehaviour
     private Timer _timer;
 
     private OrderService _orderService;
+    private AudioService _audioService;
 
     private void Start()
     {
         _orderService = ServiceLocator.Get<OrderService>();
+        _audioService = ServiceLocator.Get<AudioService>();
 
         CreateOrders();
     }
@@ -56,6 +58,7 @@ public class OrderController : MonoBehaviour
         _currentOrderView = view;
         _currentOrderView.SetSelected(true);
 
+        _audioService.PlaySpawnSound();
         _currentPackage = PackageFactory.Create(_packageSpawnPoint.position, order);
         _currentOrder = _currentPackage.Order;
 
@@ -79,6 +82,7 @@ public class OrderController : MonoBehaviour
 
     private void CancelOrder()
     {
+        _audioService.PlayCancelSound();
         RemoveCurrentOrder();
     }
 

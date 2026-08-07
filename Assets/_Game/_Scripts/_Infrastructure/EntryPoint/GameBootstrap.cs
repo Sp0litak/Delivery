@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameBootstrap : MonoBehaviour
 {
     [SerializeField] private Player _player;
+    [SerializeField] private AudioService _audioService;
     private Money _money;
     private SaveService _saveService;
     private OrderService _orderService;
@@ -11,7 +12,8 @@ public class GameBootstrap : MonoBehaviour
         //Init
         _money = new Money(0);
         _saveService = new SaveService();
-
+        _audioService.Initialize();
+        ServiceLocator.Register(_audioService);
         ServiceLocator.Register(_money);
         ServiceLocator.Register(_saveService);
         ServiceLocator.Register(new InputService(new PlayerInputSystem()));
