@@ -4,7 +4,7 @@ The latest 3D project so far — a stylized 3D delivery game set at a gas-statio
 
 ## Tech Stack
 
-- Unity Engine (C#, ShaderLab)
+- Unity Engine
 - Custom shaders for the toon look
 - Toon Gas Station — ready-made art asset pack for the location
 - TextMesh Pro
